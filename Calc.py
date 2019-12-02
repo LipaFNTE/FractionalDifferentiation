@@ -87,25 +87,19 @@ def calculate_frac_diff_results(s, d, thres):
 
 
 def plot_stats(stats, full: bool):
-    fig, ax1 = plt.subplots()
+    fig, ax1 = plt.subplots(figsize=(12, 7))
 
     ax2 = ax1.twinx()
     ax1.plot(list(stats.keys()), [k[1] for k in stats.values()], 'g-')
     ax2.plot(list(stats.keys()), [k[0] for k in stats.values()], 'b-')
 
     ax1.set_xlabel('Differentiation')
-    ax1.set_ylabel('P-value')
-    ax2.set_ylabel('Correlation')
+    ax1.set_ylabel('Correlation')
+    ax2.set_ylabel('P-value')
     plt.title("Correlation and P-value")
     if full:
         x_max = 2
     else:
         x_max = 1
     plt.hlines(0.05, xmin=0, xmax=x_max)
-
     plt.show()
-
-
-if __name__ == '__main__':
-    plot_weights(dRange=[0, 1], nPlots=3, size=6)
-    plot_weights(dRange=[1, 2], nPlots=3, size=6)
