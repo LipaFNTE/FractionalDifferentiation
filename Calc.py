@@ -51,6 +51,7 @@ def fracDiff(series, d, thres=.01):
     df = pd.concat(df, axis=1)
     return df
 
+
 def frac_diff(series, d, thres=.01):
     w = get_weights(d, series.shape[0])
     w_temp = np.cumsum(abs(w))
@@ -103,3 +104,9 @@ def plot_stats(stats, full: bool):
         x_max = 1
     plt.hlines(0.05, xmin=0, xmax=x_max)
     plt.show()
+
+
+def do_adf(x):
+    print(x.name)
+    pv = adfuller(x)[1]
+    print(f'ADF test for {x.name}: {pv}')
